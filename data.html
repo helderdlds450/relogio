@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        
+        <style>
+            *{
+                margin-top: 0px;
+                margin-right: 0px;
+                margin-left: 0px;
+                margin-bottom: 0px;
+            }
+            
+            #tudo{
+                width: 100%;
+                background: linear-gradient(to top left, rgb(82, 206, 255), rgb(184, 255, 103));
+                height: 900px;
+                position: fixed;
+                color: rgb(109, 136, 255);;
+                font-size: 300px;
+                z-index: -1;
+            }
+            #escrito{
+                margin: auto;
+                text-align: center;
+                margin-top: 7.5%;
+                -webkit-text-stroke-width: 5px;
+                -webkit-text-stroke-color: black;
+            }
+            #cronometro{
+                font-size: 30px;
+                top: 90%;
+                position: absolute;
+                left: 50%;
+                color: rgb(255, 0, 0);
+                -webkit-text-stroke-width: 0.3px;
+                -webkit-text-stroke-color: black;
+                transition: 0.5s;
+                cursor: pointer;
+            }
+            #cronometro:hover{
+                -webkit-text-stroke-width: 0.5px;
+                -webkit-text-stroke-color: rgb(0, 26, 255);
+            }
+        </style>
+        <div id="tudo">
+                <div id="escrito"><span id="hora"></span>:<span id="minuto"></span>:<span id="segundo"></span></div>
+                
+        </div>
+        <span id="cronometro">
+                CLIQUE AQUI PARA USAR O CRONÔMETRO!
+            </span>
+
+        <script>
+            function data(){
+                var date = new Date();
+                var hora = date.getHours();
+                var minuto = date.getMinutes();
+                var segundos = date.getSeconds();
+                document.getElementById("hora").innerHTML = hora;
+                document.getElementById("minuto").innerHTML = minuto;
+                document.getElementById("segundo").innerHTML = segundos;
+            }
+            var time = setInterval(data, 1000);
+            document.getElementById("cronometro").addEventListener("click", function(){
+                window.location.href = "cronometro.html"; 
+            });
+        </script>
+    </body>
+</html>

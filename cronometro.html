@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    </head>
+    <body>
+        
+        <style>
+            *{
+                margin-top: 0px;
+                margin-right: 0px;
+                margin-left: 0px;
+                margin-bottom: 0px;
+            }
+            
+            #tudo{
+                width: 100%;
+                background: linear-gradient(to top left, rgb(82, 206, 255), rgb(184, 255, 103));
+                height: 900px;
+                position: fixed;
+                color: rgb(109, 136, 255);;
+                font-size: 300px;
+                z-index: -1;
+            }
+            select{
+                border: 2px solid black;
+                border-radius: 10px;
+                width: 25%;
+                margin-left: 40px;
+                height: 80px;
+                font-size: 40px;
+                text-align: center;
+            }
+            #start{
+                width: 25%;
+                border: 2px solid black;
+                border-radius: 10px;
+                width: 25%;
+                margin-left: 36.5%;
+                height: 80px;
+                font-size: 40px;
+                text-align: center;
+                margin-top: 20px;
+                position: absolute;
+                background-color: rgb(255, 136, 136);
+                cursor: pointer;
+                transition: 0.5s;
+                color: white;
+                -webkit-text-stroke-width: 1.1px;
+                -webkit-text-stroke-color: black;
+            }
+            #start:hover{
+                background-color: rgb(132, 0, 255);
+            }
+            
+            #escrito{
+                
+                text-align: center;
+                font-size: 200px;
+                height: 500px;
+                color: rgb(78, 149, 255);
+                -webkit-text-stroke-color: black;
+                -webkit-text-stroke-width: 2px;
+            }
+            #zerar{
+                width: 25%;
+                border: 2px solid black;
+                border-radius: 10px;
+                width: 25%;
+                margin-left: 36.5%;
+                height: 80px;
+                font-size: 40px;
+                text-align: center;
+                margin-top: 20px;
+                position: absolute;
+                background-color: rgb(255, 136, 136);
+                cursor: pointer;
+                transition: 0.5s;
+                color: white;
+                -webkit-text-stroke-width: 1.1px;
+                -webkit-text-stroke-color: black;
+            }
+            #zerar:hover{
+                background-color: rgb(132, 0, 255);
+            }
+        </style>
+        <div id="tudo">
+            
+            <select id="hora">
+                <script>
+                    $(document).ready(function(){
+                        for(var i=0; i<=1000; i++){
+                            $("#hora").append("<option>"+i+"</option>");
+                        }
+                    });
+                </script>
+            </select>
+            <select id="minutos">
+                <script>
+                    $(document).ready(function(){
+                        for(var j=0; j<=59; j++){
+                            $("#minutos").append("<option>"+j+"</option>");
+                        }
+                    });
+                </script>
+            </select>
+            <select id="segundos">
+                    <script>
+                        $(document).ready(function(){
+                            for(var k=0; k<=59; k++){
+                                $("#segundos").append("<option>"+k+"</option>");
+                            }
+                        });
+                    </script>
+            </select>
+            <button id="start">START</button>
+        </div>
+        
+
+        <script>
+            
+            var hora = 0;
+            var minuto = 0;
+            var segundo = 0;
+            var thora = 0;
+            var tminuto = 0;
+            var tsegundo = 0;
+            $(document).ready(function(){
+                $("#start").click(function(){
+                    thora = $("#hora").val();
+                    tminuto = $("#minutos").val();
+                    tsegundo = $("#segundos").val();
+                    
+                    $("#start").remove();
+                    $("select").remove();
+                    start();
+                });
+            });
+            function start(){
+                var time = setInterval(conta, 1000);
+            }
+            function conta(){
+                
+                segundo++;
+                if(segundo > 59){
+                    segundo = 0;
+                    minuto++;
+                    if(minuto > 59){
+                        minuto = 0;
+                        hora++;
+                    }
+                }
+                
+
+                    
+                $("span").remove();
+                $("#escrito").remove();
+                $("button").remove();
+                $("body").append("<div id='escrito'><span>"+hora+":</span><span>"+minuto+":</span><span>"+segundo+"</span></div><button id='zerar'>zerar</button>");
+                $("#zerar").click(function(){
+                    window.location.reload();
+                });
+                if(hora == thora &&
+                    minuto == tminuto &&
+                    segundo == tsegundo){
+                        alert("O tempo acabou.");
+                        window.location.reload();
+                    }
+            }
+            
+        </script>
+    </body>
+</html>
